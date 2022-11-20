@@ -35,9 +35,9 @@ async function bootstrap() {
     return { count };
   });
 
-  fastify.post("/pools", async (request, reply) => {
+  fastify.post("/polls", async (request, reply) => {
     const createPoolBody = z.object({
-      title: z.string()
+      title: z.string().trim().min(1)
     });
 
     const { title } = createPoolBody.parse(request.body);
