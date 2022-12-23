@@ -1,12 +1,17 @@
 import { PrismaClient } from "@prisma/client";
+import ShortUniqueId from "short-unique-id";
 
 const prisma = new PrismaClient();
 
 async function main() {
+
+  const generate = new ShortUniqueId({ length: 6 });
+
   const user = await prisma.user.create({
     data: {
       name: "John Doe",
       email: "john.doe@gmail.com",
+      googleId: String(generate()),
       avatarUrl: "https://github.com/CristhoferAlencar.png",
     },
   });
