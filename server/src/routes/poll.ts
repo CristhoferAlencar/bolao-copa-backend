@@ -54,7 +54,7 @@ export async function pollRoutes(fastify: FastifyInstance) {
     const joinPollBody = z.object({
       code: z.string()
     });
-
+    
     const { code } = joinPollBody.parse(request.body);
 
     const poll = await prisma.pool.findUnique({
@@ -100,7 +100,7 @@ export async function pollRoutes(fastify: FastifyInstance) {
       }
     });
 
-    return reply.status(400).send();
+    return reply.status(200).send();
   });
 
   fastify.get("/polls", {
