@@ -18,7 +18,7 @@ export async function authRoutes(fastify: FastifyInstance) {
     });
 
     const { access_token } = createUserBody.parse(request.body);
-
+    
     const userResponse = await fetch(
       "https://www.googleapis.com/oauth2/v2/userinfo",
       {
@@ -30,7 +30,7 @@ export async function authRoutes(fastify: FastifyInstance) {
     );
 
     const userData = await userResponse.json();
-
+    
     const userInfoSchema = z.object({
       id: z.string(),
       email: z.string().email(),
